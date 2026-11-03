@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Administration – Chasse au trésor – France Travail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<style>
+[hidden]{display:none!important}
+.adm{max-width:980px;margin:26px auto 30px;padding:0 16px;position:relative;z-index:2}
+.box{background:#fff;border:4px solid var(--navy);border-radius:16px;box-shadow:8px 8px 0 var(--sky);padding:26px 24px}
+.box h2{margin:0 0 10px;font-size:1.9rem}
+.box p{line-height:1.6}
+.muted{color:var(--indigo)}
+.userbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:.95rem}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.tabs button{border:3px solid var(--navy);background:#fff;color:var(--navy);padding:10px 18px;border-radius:30px;font-weight:700;font-family:inherit;font-size:.98rem;cursor:pointer}
+.tabs button.on{background:var(--navy);color:#fff}
+.panel{background:#fff;border:3px solid var(--navy);border-radius:14px;padding:16px;margin-bottom:18px;box-shadow:5px 5px 0 var(--sky)}
+.panel-h{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.spacer{flex:1}
+.p-title{flex:1 1 220px;font-size:1.1rem;font-weight:700}
+input[type=text],input[type=email],input[type=url],input[type=number],textarea,select{width:100%;padding:10px 12px;border-radius:8px;border:2px solid #ccd3ee;font-family:inherit;font-size:1rem;background:#fff;color:var(--navy)}
+input:focus,textarea:focus,select:focus{outline:3px solid var(--sky);border-color:var(--ft)}
+.p-title{width:auto}
+label.f{display:block;font-weight:700;margin:14px 0 4px}
+label.f small{font-weight:400;color:var(--indigo)}
+.chk{display:inline-flex;align-items:center;gap:6px;font-size:.92rem;font-weight:600}
+.chk input{width:auto}
+.btn-a{border:none;border-radius:30px;padding:10px 18px;font-weight:700;font-family:inherit;font-size:.95rem;cursor:pointer;background:var(--ft);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-a:hover{background:var(--ft-dark)}
+.btn-a.ghost{background:var(--sky);color:var(--navy)}
+.btn-a.gold{background:var(--gold);color:var(--navy)}
+.btn-a.danger{background:#fff;color:var(--coral);border:2px solid var(--coral)}
+.btn-a:disabled,.icon:disabled{opacity:.4;cursor:not-allowed}
+.icon{border:2px solid var(--sky);background:#fff;border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:1rem;color:var(--navy)}
+.icon.del{color:var(--coral);border-color:var(--coral)}
+.inline-form{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.inline-form input{flex:1 1 260px;width:auto}
+.steps-a{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:8px;counter-reset:s}
+.steps-a li{display:flex;gap:12px;align-items:flex-start;background:var(--chart);border-radius:10px;padding:10px 12px;counter-increment:s}
+.steps-a li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.s-main{flex:1;min-width:0;display:grid;gap:2px;font-size:.93rem}
+.s-main .q{overflow-wrap:anywhere}
+.s-main .a,.s-main .h{color:var(--indigo);font-size:.88rem;overflow-wrap:anywhere}
+.s-btns{display:flex;gap:4px;flex:none}
+.e-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border-bottom:1px solid #e0e6fa;padding:10px 0}
+.e-row:last-child{border-bottom:none}
+.e-info{flex:1 1 260px;min-width:0}
+.e-info b{display:block}
+.e-info span{font-size:.9rem;color:var(--indigo);overflow-wrap:anywhere}
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 10px;border-radius:20px;background:#e6f9ee;color:#1b7a43}
+.badge.warn{background:#fff0e0;color:#a35a00}
+.msg-a{min-height:22px;margin:8px 0;font-weight:600;font-size:.94rem}
+.msg-a.err{color:var(--coral)}
+.msg-a.ok{color:#1b7a43}
+dialog{border:4px solid var(--navy);border-radius:16px;padding:22px 22px 18px;width:min(560px,94vw);box-shadow:10px 10px 0 var(--gold);color:var(--navy)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog h3{margin:0 0 4px;font-size:1.8rem}
+.dlg-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+details.adv{margin-top:14px}
+details.adv summary{cursor:pointer;font-weight:700;color:var(--ft)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#flash{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:12px 22px;border-radius:30px;font-weight:700;z-index:10000;max-width:92vw;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+#flash.err{background:var(--coral)}
+code{background:var(--chart);padding:1px 6px;border-radius:6px}
+@media (max-width:600px){.grid2{grid-template-columns:1fr}.s-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<div class="ft-header">France Travail</div>
+<div class="header">
+  <h1 class="title"><i class="fa-solid fa-compass"></i>Administration</h1>
+  <p class="sub">La chasse au trésor · Gérer les établissements et les énigmes</p>
+</div>
+
+<div class="adm">
+
+  <!-- Base non configurée -->
+  <section class="box" id="viewConfig" hidden>
+    <h2 class="title">Base de données non configurée</h2>
+    <p>Les champs <code>SUPABASE_URL</code> et <code>SUPABASE_ANON_KEY</code> du fichier <code>config.js</code> sont vides.
+       Suis l'étape 2 du fichier <b>GUIDE-ADMIN.md</b> pour les renseigner.</p>
+    <p><a class="btn-a ghost" href="index.html"><i class="fa-solid fa-house"></i> Retour au site</a></p>
+  </section>
+
+  <!-- Connexion -->
+  <section class="box" id="viewLogin" hidden>
+    <h2 class="title">Connexion</h2>
+    <p>Saisis ton adresse <b>@francetravail.fr</b> : tu recevras un mail avec un lien de connexion (pas de mot de passe à retenir).</p>
+    <form id="loginForm">
+      <label class="f" for="email">Adresse mail France Travail</label>
+      <input type="email" id="email" placeholder="prenom.nom@francetravail.fr" autocomplete="email" required>
+      <div class="msg-a" id="loginMsg"></div>
+      <button class="btn-a" type="submit"><i class="fa-solid fa-paper-plane"></i> Recevoir mon lien de connexion</button>
+    </form>
+    <form id="codeForm" hidden style="margin-top:22px">
+      <label class="f" for="code">Le lien ne s'ouvre pas ? <small>Saisis le code reçu dans le même mail</small></label>
+      <input type="text" id="code" inputmode="numeric" autocomplete="one-time-code" placeholder="Code à usage unique">
+      <div class="msg-a" id="codeMsg"></div>
+      <button class="btn-a ghost" type="submit"><i class="fa-solid fa-key"></i> Valider le code</button>
+    </form>
+  </section>
+
+  <!-- Connecté mais pas administrateur -->
+  <section class="box" id="viewDenied" hidden>
+    <h2 class="title">Accès non autorisé</h2>
+    <p>Tu es connecté(e) avec <b id="deniedMail"></b>, mais cette adresse n'est pas dans la liste des administrateurs.</p>
+    <p>Demande à un administrateur de t'ajouter (onglet « Administrateurs »), puis reconnecte-toi.</p>
+    <p><button class="btn-a ghost" data-act="logout"><i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</button></p>
+  </section>
+
+  <!-- Application -->
+  <section id="viewApp" hidden>
+    <div class="userbar">
+      <span><i class="fa-solid fa-user"></i> Connecté(e) : <b id="who"></b></span>
+      <span>
+        <a class="btn-a ghost" href="index.html" target="_blank" rel="noopener"><i class="fa-solid fa-eye"></i> Voir le site</a>
+        <button class="btn-a ghost" data-act="logout"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+      </span>
+    </div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="parcours" class="on">Parcours et énigmes</button>
+      <button data-tab="estab">Établissements</button>
+      <button data-tab="settings">Paramètres</button>
+      <button data-tab="admins">Administrateurs</button>
+    </nav>
+    <div id="tab-parcours"></div>
+    <div id="tab-estab" hidden></div>
+    <div id="tab-settings" hidden></div>
+    <div id="tab-admins" hidden></div>
+  </section>
+</div>
+
+<!-- Fenêtre : établissement -->
+<dialog id="estDlg">
+  <form id="estForm" autocomplete="off">
+    <h3 class="title" id="estDlgTitle">Établissement</h3>
+    <input type="hidden" id="eId">
+    <label class="f" for="eName">Nom *</label>
+    <input type="text" id="eName" required>
+    <label class="f" for="eAddr">Adresse * <small>(la position sur la carte est trouvée automatiquement)</small></label>
+    <input type="text" id="eAddr" placeholder="6 rue des Cordiers, 35400 Saint-Malo" required>
+    <label class="f" for="eSite">Site web <small>(facultatif)</small></label>
+    <input type="text" id="eSite" placeholder="https://…">
+    <label class="f" for="ePhoto">Photo <small>(facultatif : lien direct vers une image ; sinon une photo de Saint-Malo est utilisée)</small></label>
+    <input type="text" id="ePhoto" placeholder="https://…/photo.jpg">
+    <details class="adv">
+      <summary>Avancé : corriger la position à la main</summary>
+      <div class="grid2">
+        <div><label class="f" for="eLat">Latitude</label><input type="text" id="eLat" placeholder="48.6493"></div>
+        <div><label class="f" for="eLng">Longitude</label><input type="text" id="eLng" placeholder="-2.0255"></div>
+      </div>
+      <p class="muted" style="font-size:.88rem">Astuce : sur Google Maps, clic droit sur le lieu, puis clic sur les chiffres pour les copier.</p>
+    </details>
+    <div class="dlg-actions">
+      <button type="button" class="btn-a ghost" data-act="dlg-cancel">Annuler</button>
+      <button type="submit" class="btn-a" id="estSave"><i class="fa-solid fa-floppy-disk"></i> Enregistrer</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Fenêtre : étape / énigme -->
+<dialog id="stepDlg">
+  <form id="stepForm" autocomplete="off">
+    <h3 class="title" id="stepDlgTitle">Étape</h3>
+    <input type="hidden" id="sId"><input type="hidden" id="sPid">
+    <label class="f" for="sEst">Établissement *</label>
+    <select id="sEst" required></select>
+    <label class="f" for="sQ">Énigme (question) *</label>
+    <textarea id="sQ" rows="3" required></textarea>
+    <label class="f" for="sAcc">Réponses acceptées * <small>(une par ligne ; accents, majuscules et « le/la/l' » sont ignorés)</small></label>
+    <textarea id="sAcc" rows="3" required placeholder="remparts&#10;rempart"></textarea>
+    <label class="f" for="sHint">Indice <small>(facultatif)</small></label>
+    <input type="text" id="sHint">
+    <div class="dlg-actions">
+      <button type="button" class="btn-a ghost" data-act="dlg-cancel">Annuler</button>
+      <button type="submit" class="btn-a" id="stepSave"><i class="fa-solid fa-floppy-disk"></i> Enregistrer</button>
+    </div>
+  </form>
+</dialog>
+
+<div id="flash" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script>
+(function () {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const DOMAIN = "@francetravail.fr";
+  const VIEWS = ["viewConfig", "viewLogin", "viewDenied", "viewApp"];
+  const show = id => VIEWS.forEach(v => { $(v).hidden = v !== id; });
+
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY || typeof supabase === "undefined") { show("viewConfig"); return; }
+  const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const state = { est: [], parcours: [], steps: [], settings: {}, admins: [], me: "" };
+  let activeTab = "parcours";
+  let pendingEmail = "";
+  let shownFor = "";   // adresse pour laquelle l'appli est déjà affichée
+
+  /* ---------- Utilitaires ---------- */
+  let flashTimer;
+  function flash(msg, isErr) {
+    const f = $("flash");
+    f.textContent = msg; f.className = isErr ? "err" : ""; f.hidden = false;
+    clearTimeout(flashTimer);
+    flashTimer = setTimeout(() => { f.hidden = true; }, isErr ? 7000 : 3500);
+  }
+  const ok = r => { if (r.error) throw r.error; return r.data; };
+  function friendly(err) {
+    const c = err && err.code, m = (err && err.message) || String(err);
+    if (c === "23503") return "Impossible : cet élément est encore utilisé ailleurs (ex. un établissement présent dans une étape).";
+    if (c === "42501" || /row-level security/i.test(m)) return "Droits insuffisants : ton adresse n'est pas (ou plus) administratrice.";
+    if (c === "23505") return "Cet élément existe déjà.";
+    if (/Failed to fetch|NetworkError/i.test(m)) return "Connexion impossible : vérifie ton réseau puis réessaie.";
+    return m;
+  }
+  async function run(fn, okMsg) {
+    try { await fn(); await loadAll(); render(); if (okMsg) flash(okMsg); return true; }
+    catch (err) { console.error(err); flash(friendly(err), true); return false; }
+  }
+  const normUrl = u => { u = (u || "").trim(); if (!u) return ""; return /^https?:\/\//i.test(u) ? u : "https://" + u; };
+  const slug = t => t.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "etab";
+  const stepsOf = pid => state.steps.filter(s => s.parcours_id === pid).sort((a, b) => a.position - b.position);
+  const estById = id => state.est.find(e => e.id === id);
+
+  /* ---------- Connexion ---------- */
+  $("loginForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const msg = $("loginMsg"), email = $("email").value.trim().toLowerCase();
+    if (!email.endsWith(DOMAIN)) { msg.className = "msg-a err"; msg.textContent = "Seules les adresses " + DOMAIN + " sont acceptées."; return; }
+    msg.className = "msg-a"; msg.textContent = "Envoi en cours…";
+    const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname } });
+    if (error) { msg.className = "msg-a err"; msg.textContent = friendly(error); return; }
+    pendingEmail = email;
+    msg.className = "msg-a ok"; msg.textContent = "Mail envoyé à " + email + ". Clique sur le lien reçu (pense à regarder les indésirables).";
+    $("codeForm").hidden = false;
+  });
+  $("codeForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const msg = $("codeMsg"), token = $("code").value.trim();
+    if (!pendingEmail || !token) { msg.className = "msg-a err"; msg.textContent = "Demande d'abord un mail, puis saisis le code reçu."; return; }
+    const { error } = await sb.auth.verifyOtp({ email: pendingEmail, token, type: "email" });
+    if (error) { msg.className = "msg-a err"; msg.textContent = "Code invalide ou expiré."; }
+  });
+
+  async function route(session) {
+    if (!session) { shownFor = ""; show("viewLogin"); return; }
+    const email = (session.user.email || "").toLowerCase();
+    if (email === shownFor) return;
+    state.me = email; $("who").textContent = email;
+    const r = await sb.rpc("is_admin");
+    if (r.error || !r.data) { $("deniedMail").textContent = email; show("viewDenied"); return; }
+    shownFor = email;
+    show("viewApp");
+    try { await loadAll(); render(); } catch (err) { flash(friendly(err), true); }
+  }
+  sb.auth.onAuthStateChange((evt, session) => {
+    if (["INITIAL_SESSION", "SIGNED_IN", "SIGNED_OUT"].includes(evt)) setTimeout(() => route(session), 0);
+  });
+
+  /* ---------- Chargement ---------- */
+  async function loadAll() {
+    const [e, p, s, st, a] = await Promise.all([
+      sb.from("establishments").select("*").order("name"),
+      sb.from("parcours").select("*").order("position"),
+      sb.from("steps").select("*").order("position"),
+      sb.from("settings").select("*"),
+      sb.from("admins").select("*").order("email")
+    ]);
+    state.est = ok(e); state.parcours = ok(p); state.steps = ok(s); state.admins = ok(a);
+    state.settings = {}; ok(st).forEach(r => { state.settings[r.key] = r.value; });
+  }
+
+  /* ---------- Affichage ---------- */
+  function render() { renderParcours(); renderEstab(); renderSettings(); renderAdmins(); showTab(activeTab); }
+  function showTab(t) {
+    activeTab = t;
+    document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === t));
+    ["parcours", "estab", "settings", "admins"].forEach(n => { $("tab-" + n).hidden = n !== t; });
+  }
+  $("tabs").addEventListener("click", e => { const b = e.target.closest("button[data-tab]"); if (b) showTab(b.dataset.tab); });
+
+  function renderParcours() {
+    let h = '<form id="newParcours" class="inline-form"><input type="text" id="newParcoursTitle" placeholder="Nom du nouveau parcours (ex. Parcours numéro 3)" required>' +
+            '<button class="btn-a gold" type="submit"><i class="fa-solid fa-plus"></i> Créer un parcours</button></form>';
+    if (!state.parcours.length) h += '<p class="muted">Aucun parcours pour le moment : crée le premier ci-dessus.</p>';
+    state.parcours.forEach((p, pi) => {
+      const steps = stepsOf(p.id);
+      h += '<article class="panel" data-pid="' + p.id + '"><header class="panel-h">' +
+        '<input type="text" class="p-title" value="' + esc(p.title) + '" aria-label="Titre du parcours">' +
+        '<button class="btn-a ghost" data-act="p-save">Renommer</button>' +
+        '<label class="chk"><input type="checkbox" data-act="p-active"' + (p.active ? " checked" : "") + '> Visible sur le site</label>' +
+        '<span class="spacer"></span>' +
+        '<button class="icon" data-act="p-up" title="Monter le parcours"' + (pi === 0 ? " disabled" : "") + '>↑</button>' +
+        '<button class="icon" data-act="p-down" title="Descendre le parcours"' + (pi === state.parcours.length - 1 ? " disabled" : "") + '>↓</button>' +
+        '<a class="btn-a ghost" href="parcours.html?p=' + p.id + '" target="_blank" rel="noopener">Voir</a>' +
+        '<button class="btn-a danger" data-act="p-del">Supprimer</button></header>';
+      if (!steps.length) h += '<p class="muted">Aucune étape : ajoute le premier établissement. Le parcours reste masqué sur le site tant qu\'il est vide.</p>';
+      h += '<ol class="steps-a">' + steps.map((s, si) => {
+        const e = estById(s.establishment_id);
+        return '<li data-sid="' + s.id + '"><div class="s-main"><b>' + esc(e ? e.name : "(établissement supprimé)") + '</b>' +
+          '<span class="q">' + esc(s.question) + '</span>' +
+          '<span class="a">Réponses : ' + esc((s.accept || []).join(" · ")) + '</span>' +
+          (s.hint ? '<span class="h">Indice : ' + esc(s.hint) + '</span>' : "") + '</div>' +
+          '<div class="s-btns">' +
+          '<button class="icon" data-act="s-up" title="Monter"' + (si === 0 ? " disabled" : "") + '>↑</button>' +
+          '<button class="icon" data-act="s-down" title="Descendre"' + (si === steps.length - 1 ? " disabled" : "") + '>↓</button>' +
+          '<button class="icon" data-act="s-edit" title="Modifier">✎</button>' +
+          '<button class="icon del" data-act="s-del" title="Retirer">✕</button></div></li>';
+      }).join("") + "</ol>";
+      h += '<button class="btn-a" data-act="s-add"><i class="fa-solid fa-plus"></i> Ajouter une étape</button></article>';
+    });
+    $("tab-parcours").innerHTML = h;
+  }
+
+  function renderEstab() {
+    let h = '<div class="inline-form"><button class="btn-a gold" data-act="e-add"><i class="fa-solid fa-plus"></i> Ajouter un établissement</button></div>';
+    h += '<div class="panel">';
+    if (!state.est.length) h += '<p class="muted">Aucun établissement pour le moment.</p>';
+    state.est.forEach(e => {
+      const used = state.steps.filter(s => s.establishment_id === e.id).length;
+      const located = e.lat != null && e.lng != null;
+      h += '<div class="e-row" data-eid="' + esc(e.id) + '"><div class="e-info"><b>' + esc(e.name) + '</b><span>' + esc(e.address) + '</span><br>' +
+        (located
+          ? '<span class="badge">Position trouvée</span> <a href="https://www.openstreetmap.org/?mlat=' + e.lat + '&mlon=' + e.lng + '#map=19/' + e.lat + '/' + e.lng + '" target="_blank" rel="noopener">voir sur la carte</a>'
+          : '<span class="badge warn">Position manquante</span>') +
+        ' · <span>' + used + ' étape' + (used > 1 ? "s" : "") + '</span></div>' +
+        '<button class="btn-a ghost" data-act="e-edit">Modifier</button>' +
+        '<button class="btn-a danger" data-act="e-del">Supprimer</button></div>';
+    });
+    h += "</div>";
+    $("tab-estab").innerHTML = h;
+  }
+
+  function renderSettings() {
+    $("tab-settings").innerHTML =
+      '<form class="box" id="settingsForm"><h2 class="title">Paramètres généraux</h2>' +
+      '<label class="f" for="setDur">Durée de la chasse (minutes)</label>' +
+      '<input type="number" id="setDur" min="5" max="240" value="' + esc(state.settings.duration_minutes || 50) + '" required>' +
+      '<label class="f" for="setRv">Point de ralliement <small>(facultatif, affiché sur l\'accueil, ex. « Place Chateaubriand – 9h30 »)</small></label>' +
+      '<input type="text" id="setRv" value="' + esc(state.settings.rallying_point || "") + '">' +
+      '<p style="margin-top:20px"><button class="btn-a" type="submit"><i class="fa-solid fa-floppy-disk"></i> Enregistrer</button></p></form>';
+  }
+
+  function renderAdmins() {
+    let h = '<div class="box"><h2 class="title">Administrateurs</h2>' +
+      '<p>Seules les personnes listées ici, avec une adresse <b>' + DOMAIN + '</b>, peuvent modifier le contenu.</p>' +
+      '<form id="adminForm" class="inline-form"><input type="email" id="newAdmin" placeholder="prenom.nom' + DOMAIN + '" required>' +
+      '<button class="btn-a gold" type="submit"><i class="fa-solid fa-user-plus"></i> Ajouter</button></form>';
+    state.admins.forEach(a => {
+      h += '<div class="e-row" data-email="' + esc(a.email) + '"><div class="e-info"><b>' + esc(a.email) + '</b>' +
+        (a.email.toLowerCase() === state.me ? '<span>(toi)</span>' : "") + '</div>' +
+        '<button class="btn-a danger" data-act="a-del">Retirer</button></div>';
+    });
+    $("tab-admins").innerHTML = h + "</div>";
+  }
+
+  /* ---------- Fenêtres ---------- */
+  function openEst(id) {
+    const e = id ? estById(id) : null;
+    $("estDlgTitle").textContent = e ? "Modifier l'établissement" : "Nouvel établissement";
+    $("eId").value = e ? e.id : "";
+    $("eName").value = e ? e.name : "";
+    $("eAddr").value = e ? e.address : "";
+    $("eSite").value = e ? (e.website || "") : "";
+    $("ePhoto").value = e ? (e.photo_url || "") : "";
+    $("eLat").value = e && e.lat != null ? e.lat : "";
+    $("eLng").value = e && e.lng != null ? e.lng : "";
+    $("estDlg").showModal();
+  }
+
+  async function geocode(addr) {
+    const r = await fetch("https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=fr&q=" + encodeURIComponent(addr));
+    if (!r.ok) throw new Error("Le service de localisation est indisponible, réessaie dans un instant.");
+    const j = await r.json();
+    return j.length ? { lat: parseFloat(j[0].lat), lng: parseFloat(j[0].lon) } : null;
+  }
+
+  $("estForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const id = $("eId").value, existing = id ? estById(id) : null;
+    const name = $("eName").value.trim(), address = $("eAddr").value.trim();
+    const num = v => { const n = parseFloat(String(v).replace(",", ".")); return isFinite(n) ? n : null; };
+    const mLat = num($("eLat").value), mLng = num($("eLng").value);
+    const btn = $("estSave"); btn.disabled = true;
+    const done = await run(async () => {
+      let lat = existing ? existing.lat : null, lng = existing ? existing.lng : null;
+      const manualChanged = mLat != null && mLng != null && (!existing || existing.lat !== mLat || existing.lng !== mLng);
+      if (manualChanged) { lat = mLat; lng = mLng; }
+      else if (!existing || existing.address !== address || lat == null) {
+        flash("Recherche de l'adresse sur la carte…");
+        const g = await geocode(address);
+        if (!g) throw new Error("Adresse introuvable. Vérifie-la (numéro, rue, code postal, ville) ou saisis la position dans « Avancé ».");
+        lat = g.lat; lng = g.lng;
+      }
+      const row = { name, address, website: normUrl($("eSite").value) || null, photo_url: normUrl($("ePhoto").value) || null, lat, lng };
+      if (existing) ok(await sb.from("establishments").update(row).eq("id", existing.id));
+      else {
+        let base = slug(name), nid = base, i = 2;
+        while (estById(nid)) nid = base + "-" + i++;
+        ok(await sb.from("establishments").insert(Object.assign({ id: nid }, row)));
+      }
+    }, "Établissement enregistré. Vérifie sa position avec « voir sur la carte ».");
+    btn.disabled = false;
+    if (done) $("estDlg").close();
+  });
+
+  function openStep(pid, sid) {
+    const s = sid ? state.steps.find(x => x.id === sid) : null;
+    if (!state.est.length) { flash("Ajoute d'abord un établissement (onglet « Établissements »).", true); return; }
+    $("stepDlgTitle").textContent = s ? "Modifier l'étape" : "Nouvelle étape";
+    $("sId").value = s ? s.id : ""; $("sPid").value = pid;
+    $("sEst").innerHTML = state.est.map(e => '<option value="' + esc(e.id) + '">' + esc(e.name) + "</option>").join("");
+    $("sEst").value = s ? s.establishment_id : state.est[0].id;
+    $("sQ").value = s ? s.question : "";
+    $("sAcc").value = s ? (s.accept || []).join("\n") : "";
+    $("sHint").value = s ? (s.hint || "") : "";
+    $("stepDlg").showModal();
+  }
+
+  $("stepForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const sid = $("sId").value, pid = parseInt($("sPid").value, 10);
+    const accept = [...new Set($("sAcc").value.split("\n").map(x => x.trim()).filter(Boolean))];
+    if (!accept.length) { flash("Indique au moins une réponse acceptée.", true); return; }
+    const row = { establishment_id: $("sEst").value, question: $("sQ").value.trim(), accept, hint: $("sHint").value.trim() || null };
+    const btn = $("stepSave"); btn.disabled = true;
+    const done = await run(async () => {
+      if (sid) ok(await sb.from("steps").update(row).eq("id", sid));
+      else ok(await sb.from("steps").insert(Object.assign({ parcours_id: pid, position: stepsOf(pid).length + 1 }, row)));
+    }, "Étape enregistrée.");
+    btn.disabled = false;
+    if (done) $("stepDlg").close();
+  });
+
+  /* ---------- Réglages et administrateurs ---------- */
+  document.addEventListener("submit", async e => {
+    if (e.target.id === "settingsForm") {
+      e.preventDefault();
+      const dur = parseInt($("setDur").value, 10);
+      if (!(dur >= 5 && dur <= 240)) { flash("La durée doit être comprise entre 5 et 240 minutes.", true); return; }
+      run(async () => ok(await sb.from("settings").upsert([
+        { key: "duration_minutes", value: String(dur) },
+        { key: "rallying_point", value: $("setRv").value.trim() }
+      ])), "Paramètres enregistrés.");
+    } else if (e.target.id === "adminForm") {
+      e.preventDefault();
+      const mail = $("newAdmin").value.trim().toLowerCase();
+      if (!mail.endsWith(DOMAIN)) { flash("Seules les adresses " + DOMAIN + " sont acceptées.", true); return; }
+      run(async () => ok(await sb.from("admins").insert({ email: mail })), mail + " peut maintenant se connecter.");
+    } else if (e.target.id === "newParcours") {
+      e.preventDefault();
+      const title = $("newParcoursTitle").value.trim();
+      const pos = state.parcours.reduce((m, p) => Math.max(m, p.position), 0) + 1;
+      run(async () => ok(await sb.from("parcours").insert({ title, position: pos })), "Parcours créé : ajoute-lui des étapes.");
+    }
+  });
+
+  /* ---------- Actions (boutons) ---------- */
+  function moveInList(list, id, dir) {
+    const i = list.findIndex(x => x.id === id), j = i + dir;
+    if (i < 0 || j < 0 || j >= list.length) return null;
+    const copy = list.slice(); [copy[i], copy[j]] = [copy[j], copy[i]];
+    return copy;
+  }
+  const saveStepOrder = async list => ok(await sb.from("steps").upsert(list.map((s, i) => Object.assign({}, s, { position: i + 1 }))));
+
+  document.addEventListener("click", async e => {
+    const b = e.target.closest("[data-act]");
+    if (!b || b.tagName === "INPUT") return;
+    const act = b.dataset.act;
+    const pEl = b.closest("[data-pid]"), pid = pEl ? parseInt(pEl.dataset.pid, 10) : null;
+    const sEl = b.closest("[data-sid]"), sid = sEl ? sEl.dataset.sid : null;
+    const eEl = b.closest("[data-eid]"), eid = eEl ? eEl.dataset.eid : null;
+
+    if (act === "logout") { shownFor = ""; await sb.auth.signOut(); }
+    else if (act === "dlg-cancel") b.closest("dialog").close();
+    else if (act === "e-add") openEst(null);
+    else if (act === "e-edit") openEst(eid);
+    else if (act === "e-del") {
+      const e1 = estById(eid);
+      if (confirm("Supprimer « " + e1.name + " » ?")) run(async () => ok(await sb.from("establishments").delete().eq("id", eid)), "Établissement supprimé.");
+    }
+    else if (act === "p-save") {
+      const t = pEl.querySelector(".p-title").value.trim();
+      if (!t) { flash("Le titre ne peut pas être vide.", true); return; }
+      run(async () => ok(await sb.from("parcours").update({ title: t }).eq("id", pid)), "Parcours renommé.");
+    }
+    else if (act === "p-up" || act === "p-down") {
+      const list = moveInList(state.parcours, pid, act === "p-up" ? -1 : 1);
+      if (list) run(async () => { await Promise.all(list.map((p, i) => sb.from("parcours").update({ position: i + 1 }).eq("id", p.id).then(ok))); });
+    }
+    else if (act === "p-del") {
+      const p = state.parcours.find(x => x.id === pid), n = stepsOf(pid).length;
+      if (confirm("Supprimer « " + p.title + " » et ses " + n + " étape(s) ? Cette action est définitive.")) run(async () => ok(await sb.from("parcours").delete().eq("id", pid)), "Parcours supprimé.");
+    }
+    else if (act === "s-add") openStep(pid, null);
+    else if (act === "s-edit") openStep(pid, sid);
+    else if (act === "s-up" || act === "s-down") {
+      const list = moveInList(stepsOf(pid), sid, act === "s-up" ? -1 : 1);
+      if (list) run(() => saveStepOrder(list));
+    }
+    else if (act === "s-del") {
+      if (confirm("Retirer cette étape du parcours ?")) run(async () => {
+        ok(await sb.from("steps").delete().eq("id", sid));
+        const rest = stepsOf(pid).filter(s => s.id !== sid);
+        if (rest.length) await saveStepOrder(rest);
+      }, "Étape retirée.");
+    }
+    else if (act === "a-del") {
+      const mail = b.closest("[data-email]").dataset.email;
+      if (state.admins.length <= 1) { flash("Impossible de retirer le dernier administrateur.", true); return; }
+      const self = mail.toLowerCase() === state.me;
+      if (confirm(self ? "Tu vas te retirer toi-même de la liste : tu perdras l'accès. Continuer ?" : "Retirer " + mail + " des administrateurs ?")) {
+        const done = await run(async () => ok(await sb.from("admins").delete().eq("email", mail)), "Administrateur retiré.");
+        if (done && self) { shownFor = ""; route(null); await sb.auth.signOut(); }
+      }
+    }
+  });
+
+  document.addEventListener("change", e => {
+    const c = e.target;
+    if (c.dataset && c.dataset.act === "p-active") {
+      const pid = parseInt(c.closest("[data-pid]").dataset.pid, 10);
+      run(async () => ok(await sb.from("parcours").update({ active: c.checked }).eq("id", pid)), c.checked ? "Parcours visible sur le site." : "Parcours masqué du site.");
+    }
+  });
+})();
+</script>
+</body>
+</html>

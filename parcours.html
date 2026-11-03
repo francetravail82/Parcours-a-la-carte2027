@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chasse au trésor – France Travail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ft-header">FRANCE TRAVAIL</div>
+<div class="header">
+  <h1 class="title"><i class="fa-solid fa-compass"></i><span id="pTitle">Chargement…</span></h1>
+  <p class="sub">La chasse au trésor</p>
+</div>
+
+<div id="decor"></div>
+
+<div class="hud">
+  <span><i class="fa-solid fa-gem"></i> Trésors : <b id="score">0/0</b></span>
+  <span><i class="fa-solid fa-hourglass-half"></i> Temps restant : <b id="timer">--:--</b></span>
+  <span class="rv" id="rv" hidden></span>
+</div>
+
+<div class="action-bar">
+  <a href="index.html" class="back-home"><i class="fa-solid fa-house"></i> Retour à l’accueil</a>
+  <button id="start-btn" class="start-btn" disabled><i class="fa-solid fa-spinner fa-spin"></i> Chargement…</button>
+</div>
+
+<main class="hunt">
+  <section class="map-wrap">
+    <div id="map"></div>
+    <div class="fog" id="fog">
+      <i class="fa-solid fa-map"></i>
+      <h2 class="title">La carte est dans la brume…</h2>
+      <p>Ton premier établissement se cache dans les ruelles de la cité corsaire. Lève l'ancre pour le faire apparaître&nbsp;!</p>
+      <button class="start-btn" id="fog-start" disabled><i class="fa-solid fa-spinner fa-spin"></i> Chargement…</button>
+    </div>
+  </section>
+
+  <aside class="logbook">
+    <h2 class="title"><i class="fa-solid fa-book-open"></i>Carnet de bord</h2>
+    <div id="intro" class="mission" style="background:#eef3ff;border-left:5px solid #406bde;border-radius:8px;padding:12px;line-height:1.55;margin-bottom:14px">
+      Chargement du parcours…
+    </div>
+    <ol class="steps" id="steps"></ol>
+    <div class="clue" id="clue" style="display:none"></div>
+  </aside>
+</main>
+
+<div class="footer">© France Travail – Parcours à la carte | Dites le nous une fois</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script src="hunt.js"></script>
+</body>
+</html>
