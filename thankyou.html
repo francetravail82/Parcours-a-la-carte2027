@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Merci – France Travail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="ft-header">France Travail</div>
+<div class="header">
+  <h1 class="title"><i class="fa-solid fa-compass"></i>Parcours à la carte</h1>
+  <p class="sub">La chasse au trésor · Saint-Malo intra-muros</p>
+</div>
+
+<div id="decor"></div>
+
+<main class="container thanks">
+  <div class="chest"><i class="fa-solid fa-gem"></i></div>
+  <h2 class="title">Merci, matelot&nbsp;!</h2>
+  <p>Merci d’avoir pris le temps de répondre à notre questionnaire&nbsp;!</p>
+  <p>Votre avis est précieux et nous aide à améliorer nos parcours.</p>
+  <a href="index.html" class="btn"><i class="fa-solid fa-house"></i> Retour à l’accueil</a>
+</main>
+
+<div class="footer">© France Travail – Parcours à la carte | Dites le nous une fois</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="common.js"></script>
+<script>
+if (typeof confetti === "function") {
+  setTimeout(() => confetti({ particleCount: 140, spread: 120, origin: { y: 0.4 }, colors: ["#FFCC52", "#406bde", "#6370c9", "#00a8e8"] }), 500);
+}
+</script>
+</body>
+</html>
