@@ -6,5 +6,5 @@
    Tant que ces champs sont vides, le site utilise les données
    de secours intégrées à data.js.
    ===================================================== */
-const SUPABASE_URL = "https://lzljzjnlgfixjuimvmwk.supabase.co/rest/v1/";
+const SUPABASE_URL = "https://lzljzjnlgfixjuimvmwk.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_trPDxFVddHKUOBIYVgFZTA_wEwMaPQ_";
