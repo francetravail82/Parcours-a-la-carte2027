@@ -6,5 +6,5 @@
    Tant que ces champs sont vides, le site utilise les données
    de secours intégrées à data.js.
    ===================================================== */
-const SUPABASE_URL = "";       // ex. "https://abcdxyz.supabase.co"
-const SUPABASE_ANON_KEY = "";  // clé « anon / public » (commence par eyJ… ou sb_publishable_…)
+const SUPABASE_URL = "";       // ex. "https://lzljzjnlgfixjuimvmwk.supabase.co/rest/v1/"
+const SUPABASE_ANON_KEY = "";  // clé «sb_publishable_trPDxFVddHKUOBIYVgFZTA_wEwMaPQ_ »
